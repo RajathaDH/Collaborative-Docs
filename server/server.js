@@ -9,5 +9,7 @@ const io = socketio(SOCKET_PORT, {
 });
 
 io.on('connection', socket => {
-    console.log('new connection');
+    socket.on('client-changes', delta => {
+        socket.broadcast.emit('server-changes', delta);
+    });
 });

@@ -27,7 +27,17 @@ function init() {
 
     const socket = io(SERVER_URL);
 
-    
+    // listen for text changes from client and send to server
+    quill.on('text-change', (delta, oldDelta, source) => {
+        if (source !== 'user') return;
+
+        socket.emit('client-changes', delta);
+    });
+
+    // listen for changes from server and update client
+    socket.on('server-changes', delta => {
+        quill.updateContents(delta);
+    });
 }
 
 init();
