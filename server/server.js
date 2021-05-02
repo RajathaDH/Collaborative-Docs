@@ -16,8 +16,8 @@ mongoose.connect(MONGODB_URI, {
 }).then(() => console.log('Connected to MongoDB'))
     .catch(err => console.log(err));
 
-const SOCKET_PORT = process.env.SOCKET_PORT || 3000;
-const io = socketio(SOCKET_PORT, {
+const PORT = process.env.PORT || 3000;
+const io = socketio(PORT, {
     cors: {
         origin: 'http://localhost:5000',
         methods: ['GET', 'POST']
