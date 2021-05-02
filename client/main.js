@@ -58,6 +58,14 @@ function init() {
         socket.on('server-changes', delta => {
             quill.updateContents(delta);
         });
+
+        setInterval(() => {
+            const documentContent = quill.getContents();
+
+            console.log(documentContent);
+
+            socket.emit('save-document', documentContent);
+        }, 2000);
     }
 }
 
