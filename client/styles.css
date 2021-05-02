@@ -6,4 +6,52 @@
 
 body {
     font-family: sans-serif;
+    background-color: rgb(248, 248, 248);
+}
+
+.editor .ql-editor {
+    width: 8.5in;
+    min-height: 11in;
+    padding: 1in;
+    margin: 1rem;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+.ql-container.ql-snow {
+    border: none;
+    display: flex;
+    justify-content: center;
+}
+
+.ql-toolbar {
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: rgb(240, 240, 240);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+@page {
+    margin: 1in;
+}
+
+@media print {
+    body {
+        background: none;
+    }
+
+    .editor .ql-editor {
+        width: 6.5in;
+        min-height: 9in;
+        padding: 0;
+        margin: 0;
+        box-shadow: none;
+        align-self: flex-start;
+    }
+
+    .ql-toolbar {
+        display: none;
+    }
 }
