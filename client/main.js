@@ -19,15 +19,14 @@ const TOOLBAR_OPTIONS = [
 ];
 
 function init() {
-    const path = window.location.pathname;
+    const url = new URL(window.location.href);
+    const documentId = url.searchParams.get('documentId');
     
-    if (path === '/') {
+    if (!documentId) {
         const randomDocumentId = nanoid(6);
 
-        window.location.pathname = randomDocumentId;
+        window.location = `${window.location.origin}?documentId=${randomDocumentId}`;
     } else {
-        const documentId = path.slice(1);
-
         const quill = new Quill('#editor', {
             theme: 'snow',
             modules: {
@@ -61,8 +60,6 @@ function init() {
 
         setInterval(() => {
             const documentContent = quill.getContents();
-
-            console.log(documentContent);
 
             socket.emit('save-document', documentContent);
         }, 2000);
